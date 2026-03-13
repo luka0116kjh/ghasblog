@@ -13,7 +13,7 @@ const EditPage = () => {
     const [thumbnailUrl, setThumbnailUrl] = useState('');
     const [loading, setLoading] = useState(true);
     const [saving, setSaving] = useState(false);
-    const { user, isAdmin } = useAuth();
+    const { user } = useAuth();
     const navigate = useNavigate();
     const textareaRef = useRef(null);
 
@@ -41,11 +41,6 @@ const EditPage = () => {
 
                 if (docSnap.exists()) {
                     const data = docSnap.data();
-                    if (data.authorId !== user.uid && !isAdmin) {
-                        alert('수정 권한이 없습니다.');
-                        navigate(`/blog/${id}`);
-                        return;
-                    }
                     setTitle(data.title);
                     setContent(data.content);
                     setTags(data.tags ? data.tags.join(', ') : '');
@@ -65,7 +60,7 @@ const EditPage = () => {
         if (user) {
             fetchPost();
         }
-    }, [id, navigate, user, isAdmin]);
+    }, [id, navigate, user]);
 
     if (!user) {
         return (
