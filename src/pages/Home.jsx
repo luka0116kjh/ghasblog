@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { db } from '../firebase';
 import { collection, query, limit, orderBy, getDocs } from 'firebase/firestore';
-import { ArrowRight, Zap, Shield, Layout as LayoutIcon, Code, Github } from 'lucide-react';
+import { ArrowRight, Layout as LayoutIcon, Code } from 'lucide-react';
 import RepresentativeImage from '../components/RepresentativeImage';
 
 const Home = () => {
@@ -24,6 +24,7 @@ const Home = () => {
         };
         fetchRecentPosts();
     }, []);
+
     return (
         <div className="home-container animate-fade-in">
             <section className="hero container">
@@ -40,8 +41,8 @@ const Home = () => {
                         시작하기
                         <ArrowRight size={20} />
                     </Link>
-                    <a href="https://github.com/luka0116kjh" target="_blank" rel="noopener noreferrer" className="btn btn-ghost btn-lg" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                        <Github size={20} /> GitHub
+                    <a href="https://ghas-h.goesh.kr/ghas-h/main.do" target="_blank" rel="noopener noreferrer" className="btn btn-ghost btn-lg" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        <LayoutIcon size={20} /> 경자고 홈페이지
                     </a>
                 </div>
             </section>

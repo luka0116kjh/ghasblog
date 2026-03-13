@@ -21,7 +21,7 @@ const Header = () => {
             <div className="container header-content">
                 <Link to="/" className="logo">
                     <BookOpen className="logo-icon" />
-                    <span className="gradient-text">ghasblog</span>
+                    <span className="gradient-text">ghas</span>
                 </Link>
 
                 <div className="nav-container">
@@ -86,7 +86,7 @@ const Layout = ({ children }) => {
             </main>
             <footer className="footer">
                 <div className="container">
-                    <p>&copy; 2026 ghasblog. Built with React & Firebase.</p>
+                    <p>&copy; 2026 ghas. Built with React & Firebase.</p>
                 </div>
             </footer>
         </div>
