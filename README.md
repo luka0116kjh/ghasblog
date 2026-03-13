@@ -13,7 +13,7 @@
 
 ## ✨ Key Features
 
-- **🔐 Firebase Authentication**: 안전한 구글 로그인 및 이메일 기반 인증 시스템 구축.
+- **🔐 Firebase Authentication**: 로그인 및 이메일 기반 인증 시스템 구축.
 - **📝 Markdown Support**: `react-markdown`을 활용한 편리한 글 작성 및 렌더링.
 - **🖼️ Image Management**: Firestore를 이용한 대표 이미지 탐지 및 Base64 데이터 스토리지 활용.
 - **☁️ Weather Integration**: 실시간 날씨 데이터 fetching 및 UI 표시.
@@ -83,5 +83,5 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## 👤 Author
 
-**GHAS (김진형)**
+**GHAS (Luka)**
 - GitHub: [@luka0116kjh](https://github.com/luka0116kjh)
