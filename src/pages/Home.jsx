@@ -11,7 +11,7 @@ const Home = () => {
     useEffect(() => {
         const fetchRecentPosts = async () => {
             try {
-                const q = query(collection(db, 'posts'), orderBy('createdAt', 'desc'), limit(3));
+                const q = query(collection(db, 'posts'), orderBy('createdAt', 'desc'), limit(4));
                 const querySnapshot = await getDocs(q);
                 const postsData = querySnapshot.docs.map(doc => ({
                     id: doc.id,
@@ -66,23 +66,21 @@ const Home = () => {
                         <h2>Recent Posts</h2>
                         <Link to="/blog" className="view-all">View all <ArrowRight size={16} /></Link>
                     </div>
-                    <div className="posts-grid">
+                    <div className="circle-post-grid home-circle-grid">
                         {recentPosts.map(post => {
-                            const preview = post.content
-                                ? `${post.content.substring(0, 80)}...`
-                                : '내용이 없습니다.';
                             return (
-                                <Link key={post.id} to={`/blog/${post.id}`} className="card post-card compact">
-                                    {post.thumbnailUrl && (
-                                        <div style={{ marginBottom: '1rem', width: '100px', height: '100px', margin: '0 auto 1rem' }}>
-                                            <RepresentativeImage imageUrl={post.thumbnailUrl} />
-                                        </div>
-                                    )}
-                                    <span className="post-date" style={{ textAlign: 'center', display: 'block' }}>
+                                <Link key={post.id} to={`/blog/${post.id}`} className="circle-post-card">
+                                    <div className={`circle-post-thumb${post.thumbnailUrl ? '' : ' no-image'}`}>
+                                        {post.thumbnailUrl ? (
+                                            <RepresentativeImage imageUrl={post.thumbnailUrl} className="circle-thumb" />
+                                        ) : (
+                                            <div className="circle-thumb-placeholder">이미지 없음</div>
+                                        )}
+                                    </div>
+                                    <h3 className="circle-post-title">{post.title}</h3>
+                                    <span className="circle-post-date">
                                         {post.createdAt ? new Date(post.createdAt.toDate()).toLocaleDateString() : 'Just now'}
                                     </span>
-                                    <h3 style={{ textAlign: 'center' }}>{post.title}</h3>
-                                    <p style={{ textAlign: 'center' }}>{preview}</p>
                                 </Link>
                             );
                         })}
