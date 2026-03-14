@@ -15,6 +15,8 @@
 
 - **🔐 Firebase Authentication**: 로그인 및 이메일 기반 인증 시스템 구축.
 - **📝 Markdown Support**: `react-markdown`을 활용한 편리한 글 작성 및 렌더링.
+- **✏️ Post Management**: 등록된 블로그 게시글 내용 수정 및 삭제 기능 제공.
+- **🔍 Search Functionality**: 원하는 게시글을 쉽게 찾을 수 있는 검색 기능 지원.
 - **🖼️ Image Management**: Firestore를 이용한 대표 이미지 탐지 및 Base64 데이터 스토리지 활용.
 - **☁️ Weather Integration**: 실시간 날씨 데이터 fetching 및 UI 표시.
 - **📱 Responsive Design**: 모바일, 태블릿, 데스크탑 모든 환경에 최적화된 반응형 레이아웃.
