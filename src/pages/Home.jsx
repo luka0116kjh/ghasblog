@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { db } from '../firebase';
 import { collection, query, limit, orderBy, getDocs } from 'firebase/firestore';
-import { ArrowRight, Layout as LayoutIcon, Code } from 'lucide-react';
+import { ArrowRight, Layout as LayoutIcon, Code, Utensils } from 'lucide-react';
 import RepresentativeImage from '../components/RepresentativeImage';
 
 const Home = () => {
@@ -43,6 +43,9 @@ const Home = () => {
                     </Link>
                     <a href="https://ghas-h.goesh.kr/ghas-h/main.do" target="_blank" rel="noopener noreferrer" className="btn btn-ghost btn-lg">
                         <LayoutIcon size={20} /> 경자고 홈페이지
+                    </a>
+                    <a href="https://ghaslunch1.web.app/" target="_blank" rel="noopener noreferrer" className="btn btn-ghost btn-lg">
+                        <Utensils size={20} /> 경자고 급식
                     </a>
                 </div>
             </section>

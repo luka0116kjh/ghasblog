@@ -1,10 +1,12 @@
 import React from 'react';
 import { NavLink, Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { BookOpen } from 'lucide-react';
+import { useTheme } from '../context/ThemeContext';
+import { BookOpen, Sun, Moon } from 'lucide-react';
 
 const Header = () => {
     const { user, logout, isAdmin } = useAuth();
+    const { theme, toggleTheme } = useTheme();
     const navigate = useNavigate();
 
     const handleLogout = async () => {
@@ -46,6 +48,14 @@ const Header = () => {
 							Login
 						</NavLink>
 					)}
+
+                    <button 
+                        onClick={toggleTheme} 
+                        className="nav-button theme-toggle" 
+                        aria-label="Toggle theme"
+                    >
+                        {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
+                    </button>
 				</nav>
             </div>
         </header>
