@@ -14,7 +14,7 @@ const BlogDetail = () => {
     const [loading, setLoading] = useState(true);
     const [isDeleting, setIsDeleting] = useState(false);
     const navigate = useNavigate();
-    const { user } = useAuth();
+    const { user, isAdmin } = useAuth();
 
     useEffect(() => {
         const fetchPost = async () => {
@@ -100,7 +100,7 @@ const BlogDetail = () => {
                     <ReactMarkdown>{post.content}</ReactMarkdown>
                 </div>
 
-                {user && (
+                {user && (user.uid === post.authorId || isAdmin) && (
                     <div className="post-actions" style={{ marginTop: '2rem', display: 'flex', justifyContent: 'flex-end', gap: '1rem' }}>
                         <Link
                             to={`/edit/${id}`}

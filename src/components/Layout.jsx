@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink, Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { LogIn, LogOut, PenTool, Home, BookOpen } from 'lucide-react';
+import { BookOpen } from 'lucide-react';
 
 const Header = () => {
     const { user, logout, isAdmin } = useAuth();
@@ -24,54 +24,29 @@ const Header = () => {
                     <span className="gradient-text">ghas</span>
                 </Link>
 
-                <div className="nav-container">
-                    <nav className="nav">
-                        <NavLink to="/" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
-                            <Home size={20} />
-                            <span>Home</span>
-                        </NavLink>
-                        <NavLink to="/blog" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
-                            <BookOpen size={20} />
-                            <span>Posts</span>
-                        </NavLink>
+				<nav className="nav">
+					<NavLink to="/" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
+						Home
+					</NavLink>
+					<NavLink to="/blog" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
+						Posts
+					</NavLink>
 
-                        {user ? (
-                            <Link to="/write" className="btn btn-primary btn-sm mobile-write-btn">
-                                <PenTool size={18} />
-                                <span>Write</span>
-                            </Link>
-                        ) : (
-                            <Link to="/login" className="nav-link mobile-login-link">
-                                <LogIn size={20} />
-                                <span>Login</span>
-                            </Link>
-                        )}
-                    </nav>
-
-                    <div className="user-actions">
-                        {user ? (
-                            <div className="user-menu">
-                                <Link to="/write" className="btn btn-primary btn-sm desktop-write-btn">
-                                    <PenTool size={18} />
-                                    <span>Write</span>
-                                </Link>
-                                <button onClick={handleLogout} className="btn-icon" title="Logout">
-                                    <LogOut size={20} />
-                                </button>
-                                <img
-                                    src={user.photoURL || `https://ui-avatars.com/api/?name=${user.displayName}&background=random`}
-                                    alt={user.displayName}
-                                    className="avatar"
-                                />
-                            </div>
-                        ) : (
-                            <Link to="/login" className="btn btn-primary btn-sm desktop-login-btn">
-                                <LogIn size={18} />
-                                <span>Login</span>
-                            </Link>
-                        )}
-                    </div>
-                </div>
+					{user ? (
+						<>
+							<NavLink to="/write" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
+								Write
+							</NavLink>
+							<button type="button" onClick={handleLogout} className="nav-link nav-button">
+								Log out
+							</button>
+						</>
+					) : (
+						<NavLink to="/login" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
+							Login
+						</NavLink>
+					)}
+				</nav>
             </div>
         </header>
     );

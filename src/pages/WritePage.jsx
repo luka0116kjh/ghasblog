@@ -20,8 +20,9 @@ const WritePage = () => {
         const file = e.target.files[0];
         if (!file) return;
 
-        if (file.size > 1024 * 1024) {
-            alert('이미지 크기는 1MB 이하여야 합니다.');
+        // Firestore 문서 최대 크기는 1MB입니다. Base64 변환 시 용량이 약 33% 증가하므로 안전하게 500KB로 제한합니다.
+        if (file.size > 500 * 1024) {
+            alert('이미지 크기는 500KB 이하여야 합니다.');
             return;
         }
 
@@ -132,7 +133,7 @@ const WritePage = () => {
                                         <div className="upload-placeholder">
                                             <ImageIcon size={48} />
                                             <p>Click to upload</p>
-                                            <p style={{ fontSize: '0.8rem' }}>Max 1MB</p>
+                                            <p style={{ fontSize: '0.8rem' }}>Max 500KB</p>
                                         </div>
                                     )}
                                     <input

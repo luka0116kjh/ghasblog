@@ -13,7 +13,7 @@ const EditPage = () => {
     const [thumbnailUrl, setThumbnailUrl] = useState('');
     const [loading, setLoading] = useState(true);
     const [saving, setSaving] = useState(false);
-    const { user } = useAuth();
+    const { user, isAdmin } = useAuth();
     const navigate = useNavigate();
     const textareaRef = useRef(null);
 
@@ -21,8 +21,8 @@ const EditPage = () => {
         const file = e.target.files[0];
         if (!file) return;
 
-        if (file.size > 1024 * 1024) {
-            alert('이미지 크기는 1MB 이하여야 합니다.');
+        if (file.size > 500 * 1024) {
+            alert('이미지 크기는 500KB 이하여야 합니다.');
             return;
         }
 
@@ -41,6 +41,11 @@ const EditPage = () => {
 
                 if (docSnap.exists()) {
                     const data = docSnap.data();
+                    if (user && user.uid !== data.authorId && !isAdmin) {
+                        alert('게시물을 수정할 권한이 없습니다.');
+                        navigate(`/blog/${id}`);
+                        return;
+                    }
                     setTitle(data.title);
                     setContent(data.content);
                     setTags(data.tags ? data.tags.join(', ') : '');
@@ -60,7 +65,7 @@ const EditPage = () => {
         if (user) {
             fetchPost();
         }
-    }, [id, navigate, user]);
+    }, [id, navigate, user, isAdmin]);
 
     if (!user) {
         return (
@@ -165,7 +170,7 @@ const EditPage = () => {
                                         <div className="upload-placeholder">
                                             <ImageIcon size={48} />
                                             <p>Click to upload</p>
-                                            <p style={{ fontSize: '0.8rem' }}>Max 1MB</p>
+                                            <p style={{ fontSize: '0.8rem' }}>Max 500KB</p>
                                         </div>
                                     )}
                                     <input
