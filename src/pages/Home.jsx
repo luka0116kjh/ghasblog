@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { db } from '../firebase';
 import { collection, query, limit, orderBy, getDocs } from 'firebase/firestore';
-import { ArrowRight, Layout as LayoutIcon, Code, Utensils } from 'lucide-react';
+import { ArrowRight, Layout as LayoutIcon, Utensils } from 'lucide-react';
 import RepresentativeImage from '../components/RepresentativeImage';
 
 const Home = () => {
@@ -47,19 +47,6 @@ const Home = () => {
                     <a href="https://ghaslunch1.web.app/" target="_blank" rel="noopener noreferrer" className="btn btn-ghost btn-lg">
                         <Utensils size={20} /> 경자고 급식
                     </a>
-                </div>
-            </section>
-
-            <section className="features container">
-                <div className="feature-card">
-                    <LayoutIcon className="feature-icon" size={32} />
-                    <h3>Modern UI</h3>
-                    <p>Glassmorphism 스타일과 세련된 애니메이션으로 사용자 경험을 극대화했습니다.</p>
-                </div>
-                <div className="feature-card">
-                    <Code className="feature-icon" size={32} />
-                    <h3>Markdown Ready</h3>
-                    <p>글 작성 시 Markdown 형식을 지원하여 코드와 텍스트를 깔끔하게 표현할 수 있습니다.</p>
                 </div>
             </section>
 
