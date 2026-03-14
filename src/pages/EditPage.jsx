@@ -172,54 +172,54 @@ const EditPage = () => {
                                     style={{ minHeight: '400px' }}
                                 />
                             </div>
-                        </div >
+                        </div>
 
-    <div className="form-sidebar">
-        <div className="form-group">
-            <label>Representative Image</label>
-            <div
-                className="thumbnail-upload-area"
-                onClick={() => document.getElementById('image-input').click()}
-            >
-                {thumbnailUrl ? (
-                    <div className="thumbnail-preview-container">
-                        <img src={thumbnailUrl} alt="Preview" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                        <div className="thumbnail-overlay">
-                            <Upload size={24} />
-                            <span>Change Image</span>
+                        <div className="form-sidebar">
+                            <div className="form-group">
+                                <label>Representative Image</label>
+                                <div
+                                    className="thumbnail-upload-area"
+                                    onClick={() => document.getElementById('image-input').click()}
+                                >
+                                    {thumbnailUrl ? (
+                                        <div className="thumbnail-preview-container">
+                                            <img src={thumbnailUrl} alt="Preview" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                            <div className="thumbnail-overlay">
+                                                <Upload size={24} />
+                                                <span>Change Image</span>
+                                            </div>
+                                        </div>
+                                    ) : (
+                                        <div className="upload-placeholder">
+                                            <ImageIcon size={48} />
+                                            <p>Click to upload</p>
+                                            <p style={{ fontSize: '0.8rem' }}>Max 500KB</p>
+                                        </div>
+                                    )}
+                                    <input
+                                        id="image-input"
+                                        type="file"
+                                        accept="image/*"
+                                        onChange={handleImageChange}
+                                        style={{ display: 'none' }}
+                                    />
+                                </div>
+                            </div>
                         </div>
                     </div>
-                ) : (
-                    <div className="upload-placeholder">
-                        <ImageIcon size={48} />
-                        <p>Click to upload</p>
-                        <p style={{ fontSize: '0.8rem' }}>Max 500KB</p>
+
+                    <div className="form-actions">
+                        <button type="button" onClick={() => navigate(-1)} className="btn btn-ghost">
+                            Cancel
+                        </button>
+                        <button type="submit" className="btn btn-primary" disabled={saving}>
+                            <Send size={18} />
+                            {saving ? 'Saving...' : 'Update Post'}
+                        </button>
                     </div>
-                )}
-                <input
-                    id="image-input"
-                    type="file"
-                    accept="image/*"
-                    onChange={handleImageChange}
-                    style={{ display: 'none' }}
-                />
+                </form>
             </div>
         </div>
-    </div>
-                    </div >
-
-    <div className="form-actions">
-        <button type="button" onClick={() => navigate(-1)} className="btn btn-ghost">
-            Cancel
-        </button>
-        <button type="submit" className="btn btn-primary" disabled={saving}>
-            <Send size={18} />
-            {saving ? 'Saving...' : 'Update Post'}
-        </button>
-    </div>
-                </form >
-            </div >
-        </div >
     );
 };
 
