@@ -41,7 +41,7 @@ const Home = () => {
                         시작하기
                         <ArrowRight size={20} />
                     </Link>
-                    <a href="https://ghas-h.goesh.kr/ghas-h/main.do" target="_blank" rel="noopener noreferrer" className="btn btn-ghost btn-lg" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <a href="https://ghas-h.goesh.kr/ghas-h/main.do" target="_blank" rel="noopener noreferrer" className="btn btn-ghost btn-lg">
                         <LayoutIcon size={20} /> 경자고 홈페이지
                     </a>
                 </div>

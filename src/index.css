@@ -685,6 +685,17 @@ textarea {
     padding: 0;
   }
 
+  .hero-actions {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0 1rem;
+  }
+  
+  .hero-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
   .logo span {
     font-size: 1.25rem;
   }
