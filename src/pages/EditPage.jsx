@@ -5,9 +5,17 @@ import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { useAuth } from '../context/AuthContext';
 import { Send, Tag as TagIcon, Image as ImageIcon, Upload } from 'lucide-react';
 
+const CATEGORIES = [
+    'GHAS 학교 소개',
+    'GHAS 보도자료',
+    'GHAS 소식',
+    'GHAS 인터뷰',
+];
+
 const EditPage = () => {
     const { id } = useParams();
     const [title, setTitle] = useState('');
+    const [category, setCategory] = useState(CATEGORIES[0]);
     const [content, setContent] = useState('');
     const [tags, setTags] = useState('');
     const [thumbnailUrl, setThumbnailUrl] = useState('');
@@ -47,6 +55,7 @@ const EditPage = () => {
                         return;
                     }
                     setTitle(data.title);
+                    setCategory(data.category || CATEGORIES[0]);
                     setContent(data.content);
                     setTags(data.tags ? data.tags.join(', ') : '');
                     setThumbnailUrl(data.thumbnailUrl || '');
@@ -92,6 +101,7 @@ const EditPage = () => {
             const docRef = doc(db, 'posts', id);
             await updateDoc(docRef, {
                 title,
+                category,
                 content,
                 tags: tags.split(',').map(tag => tag.trim()).filter(tag => tag),
                 thumbnailUrl,
@@ -114,6 +124,19 @@ const EditPage = () => {
                 <form onSubmit={handleSubmit} className="write-form">
                     <div className="form-layout">
                         <div className="form-main">
+                            <div className="form-group">
+                                <label>Category</label>
+                                <select 
+                                    className="form-select"
+                                    value={category}
+                                    onChange={(e) => setCategory(e.target.value)}
+                                >
+                                    {CATEGORIES.map(cat => (
+                                        <option key={cat} value={cat}>{cat}</option>
+                                    ))}
+                                </select>
+                            </div>
+
                             <div className="form-group">
                                 <label>Title</label>
                                 <input
@@ -149,54 +172,54 @@ const EditPage = () => {
                                     style={{ minHeight: '400px' }}
                                 />
                             </div>
-                        </div>
+                        </div >
 
-                        <div className="form-sidebar">
-                            <div className="form-group">
-                                <label>Representative Image</label>
-                                <div 
-                                    className="thumbnail-upload-area"
-                                    onClick={() => document.getElementById('image-input').click()}
-                                >
-                                    {thumbnailUrl ? (
-                                        <div className="thumbnail-preview-container">
-                                            <img src={thumbnailUrl} alt="Preview" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                                            <div className="thumbnail-overlay">
-                                                <Upload size={24} />
-                                                <span>Change Image</span>
-                                            </div>
-                                        </div>
-                                    ) : (
-                                        <div className="upload-placeholder">
-                                            <ImageIcon size={48} />
-                                            <p>Click to upload</p>
-                                            <p style={{ fontSize: '0.8rem' }}>Max 500KB</p>
-                                        </div>
-                                    )}
-                                    <input
-                                        id="image-input"
-                                        type="file"
-                                        accept="image/*"
-                                        onChange={handleImageChange}
-                                        style={{ display: 'none' }}
-                                    />
-                                </div>
-                            </div>
+    <div className="form-sidebar">
+        <div className="form-group">
+            <label>Representative Image</label>
+            <div
+                className="thumbnail-upload-area"
+                onClick={() => document.getElementById('image-input').click()}
+            >
+                {thumbnailUrl ? (
+                    <div className="thumbnail-preview-container">
+                        <img src={thumbnailUrl} alt="Preview" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                        <div className="thumbnail-overlay">
+                            <Upload size={24} />
+                            <span>Change Image</span>
                         </div>
                     </div>
-
-                    <div className="form-actions">
-                        <button type="button" onClick={() => navigate(-1)} className="btn btn-ghost">
-                            Cancel
-                        </button>
-                        <button type="submit" className="btn btn-primary" disabled={saving}>
-                            <Send size={18} />
-                            {saving ? 'Saving...' : 'Update Post'}
-                        </button>
+                ) : (
+                    <div className="upload-placeholder">
+                        <ImageIcon size={48} />
+                        <p>Click to upload</p>
+                        <p style={{ fontSize: '0.8rem' }}>Max 500KB</p>
                     </div>
-                </form>
+                )}
+                <input
+                    id="image-input"
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImageChange}
+                    style={{ display: 'none' }}
+                />
             </div>
         </div>
+    </div>
+                    </div >
+
+    <div className="form-actions">
+        <button type="button" onClick={() => navigate(-1)} className="btn btn-ghost">
+            Cancel
+        </button>
+        <button type="submit" className="btn btn-primary" disabled={saving}>
+            <Send size={18} />
+            {saving ? 'Saving...' : 'Update Post'}
+        </button>
+    </div>
+                </form >
+            </div >
+        </div >
     );
 };
 

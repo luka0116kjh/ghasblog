@@ -4,7 +4,7 @@ import { db } from '../firebase';
 import { doc, getDoc, deleteDoc } from 'firebase/firestore';
 import ReactMarkdown from 'react-markdown';
 import { format } from 'date-fns';
-import { Calendar, User, ArrowLeft, Tag as TagIcon, Trash2, Edit3 } from 'lucide-react';
+import { Calendar, User, ArrowLeft, Tag as TagIcon, Trash2, Edit3, Folder } from 'lucide-react';
 import RepresentativeImage from '../components/RepresentativeImage';
 import { useAuth } from '../context/AuthContext';
 
@@ -76,6 +76,10 @@ const BlogDetail = () => {
 
                 <header className="post-header-detail">
                     <div className="post-meta">
+                        <span>
+                            <Folder size={16} />
+                            {post.category || '기타'}
+                        </span>
                         <span>
                             <Calendar size={16} />
                             {post.createdAt ? format(post.createdAt.toDate(), 'MMMM dd, yyyy') : 'Just now'}

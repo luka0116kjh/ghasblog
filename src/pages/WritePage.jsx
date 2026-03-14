@@ -5,8 +5,16 @@ import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { useAuth } from '../context/AuthContext';
 import { Send, Tag as TagIcon, Image as ImageIcon, Upload } from 'lucide-react';
 
+const CATEGORIES = [
+    'GHAS 학교 소개',
+    'GHAS 보도자료',
+    'GHAS 소식',
+    'GHAS 인터뷰',
+];
+
 const WritePage = () => {
     const [title, setTitle] = useState('');
+    const [category, setCategory] = useState(CATEGORIES[0]);
     const [content, setContent] = useState('');
     const [thumbnailUrl, setThumbnailUrl] = useState('');
     const [loading, setLoading] = useState(false);
@@ -53,6 +61,7 @@ const WritePage = () => {
         try {
             await addDoc(collection(db, 'posts'), {
                 title,
+                category,
                 content,
                 tags: tags.split(',').map(tag => tag.trim()).filter(tag => tag),
                 thumbnailUrl,
@@ -77,6 +86,19 @@ const WritePage = () => {
                 <form onSubmit={handleSubmit} className="write-form">
                     <div className="form-layout">
                         <div className="form-main">
+                            <div className="form-group">
+                                <label>Category</label>
+                                <select
+                                    className="form-select"
+                                    value={category}
+                                    onChange={(e) => setCategory(e.target.value)}
+                                >
+                                    {CATEGORIES.map(cat => (
+                                        <option key={cat} value={cat}>{cat}</option>
+                                    ))}
+                                </select>
+                            </div>
+
                             <div className="form-group">
                                 <label>Title</label>
                                 <input
@@ -117,7 +139,7 @@ const WritePage = () => {
                         <div className="form-sidebar">
                             <div className="form-group">
                                 <label>Representative Image</label>
-                                <div 
+                                <div
                                     className="thumbnail-upload-area"
                                     onClick={() => document.getElementById('image-input').click()}
                                 >
