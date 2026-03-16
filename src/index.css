@@ -637,13 +637,11 @@ select.form-select:focus {
   width: 180px;
   height: 180px;
   border-radius: 50%;
-  border: 6px solid var(--primary);
-  padding: 6px;
-  background: var(--background);
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto 0.75rem;
+  overflow: hidden;
 }
 
 .circle-post-thumb.no-image {
